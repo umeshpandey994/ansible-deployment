@@ -1,0 +1,6 @@
+---
+- hosts: example-stage
+  become: yes
+  become_user: root
+  roles:
+     - example

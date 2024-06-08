@@ -1,0 +1,33 @@
+---
+- name: Python pip | Install devel packages
+  apt:
+    name: [
+      python-pip
+    ]
+    state: present
+
+
+- name: Pyenv | Install the virtualenv
+  shell: "pip install virtualenv && pip install virtualenvwrapper"
+
+
+- name: Create a Env directory if it does not exist
+  file:
+    path: ~/Env
+    state: directory
+    mode: '0775'
+
+- name: Export Env
+  become_user: "{{ user }}"
+  shell: "export WORKON_HOME=~/Env"
+
+- name: pyenv | Restart user bash shell
+  become_user: "{{ user }}"
+  shell: ". ~/.bashrc"
+
+- name: mkvirtualenv | Create virtualenv
+  become_user: "{{ user }}"
+  shell: "mkvirtualenv {{ virtualenv_name }}"
+
+
+

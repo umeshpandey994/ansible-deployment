@@ -1,0 +1,9 @@
+---
+- name: Example job | Run every minute
+  cron:
+    name: "Example job | Run every minute"
+    user: "ubuntu"
+    minute: "*"
+    hour: "*"
+    job: "{{ python_executable_path }} {{ django_dir }}/manage.py job_name >/dev/null 2>&1"
+    state: present

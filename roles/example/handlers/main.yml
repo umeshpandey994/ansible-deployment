@@ -1,0 +1,27 @@
+---
+
+#- name: Do an echo
+#  debug: msg="This will be printed"
+
+- name: restart gunicorn
+  become: true
+  become_user: root
+  supervisorctl: name='gunicorn' state=restarted
+
+
+- name: restart celery-default
+  become: true
+  become_user: root
+  supervisorctl: name='celery-default' state=restarted
+
+
+- name: restart redis
+  become: true
+  become_user: root
+  service: name=redis-server state=restarted enabled=yes
+
+- name: restart nginx
+  become: true
+  become_user: root
+  service: name=nginx state=restarted
+

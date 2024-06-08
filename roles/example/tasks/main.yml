@@ -1,0 +1,14 @@
+---
+# tasks file for example
+
+#- include: pyenv.yml
+#
+- include: install.yml
+
+#- include: certbot.yml
+#
+#- include: gunicorn.yml
+#
+#- include: nginx.yml
+#
+#- include: cron-jobs.yml

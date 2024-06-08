@@ -1,0 +1,12 @@
+---
+# defaults file for example host
+
+user: ubuntu
+root_dir: /home/ubuntu
+home_dir: /home/ubuntu/example
+site_branch: master
+git_username: <git username>
+branch_name: "master"
+django_dir: /home/ubuntu/example
+virtualenv_dir: /home/ubuntu/Env/example
+python_executable_path: "/home/ubuntu/Env/example/bin/python"

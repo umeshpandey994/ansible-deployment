@@ -1,0 +1,8 @@
+
+- name: Nginx | Updated config
+  become: yes
+  template:
+    src: example.conf
+    dest: /etc/nginx/sites-enabled/example.conf
+  notify:
+    - restart nginx

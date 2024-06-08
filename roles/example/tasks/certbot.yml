@@ -1,0 +1,26 @@
+---
+- name: Install certbot required package
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - certbot
+    - python-certbot-nginx
+  become: true
+  become_user: root
+
+
+- name: Generate letsencrypt certificate
+  shell: "certbot --nginx --quiet --agree-tos -m 'email' -d hostname"
+  become: true
+  become_user: root
+
+
+- name: Cron | Run renew letsencrypt certificate once a month
+  become: true
+  become_user: root
+  cron: name="Run renew letsencrypt certificate once a month"
+        minute="0"
+        hour="0"
+        day="1"
+        job="certbot --nginx --quiet --agree-tos -m 'email' -d hostname 2>&1"

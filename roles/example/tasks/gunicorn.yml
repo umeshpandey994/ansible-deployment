@@ -1,0 +1,10 @@
+
+- name: Gunicorn | Celery worker conf
+  become: yes
+  template:
+    src: gunicorn_celery.conf
+    dest: /etc/supervisor/conf.d/example.conf
+  notify:
+    - restart gunicorn
+    - restart celery-default
+    - restart redis
